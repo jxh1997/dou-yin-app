@@ -1,5 +1,5 @@
 console.log(process.env.NODE_ENV)
-const port = process.env.port || 10086;
+const port = process.env.port || 8011;
 const path = require('path');
 
 function resolve(dir) {
@@ -9,7 +9,7 @@ function resolve(dir) {
 
 
 module.exports = {
-  outputDir: process.env.NODE_ENV === 'production' ?  'dist': 'ych5' ,
+  outputDir: process.env.NODE_ENV === 'production' ?  'dist': '' ,
   productionSourceMap: false, // 生产环境是否 生成SourceMap
   devServer: {
     port,
@@ -20,14 +20,10 @@ module.exports = {
       warnings: false,
       errors: true
     },
-    // host:'0.0.0.0',
-    // hot: true,
-    // hotOnly: false,
-    // https: false,
     //代理
     proxy: {
       '/api': {
-        target: 'http://192.168.43.154:8080',
+        target: '',
         ws: true,
         changeOrigin: true
       },
@@ -49,7 +45,6 @@ module.exports = {
         'views': resolve('src/views'),
         'request': resolve('src/request'),
         'utils': resolve('src/utils'),
-
       }
     }
   },

@@ -10,6 +10,7 @@
   "dependencies": {
     "babel-plugin-import": "^1.13.3",
     "core-js": "^3.6.5",
+    "lib-flexible": "^0.3.2",
     "postcss-pxtorem": "^6.0.0",
     "style-resources-loader": "^1.4.1",
     "vant": "^2.12.14",
@@ -30,7 +31,6 @@
     "eslint-plugin-vue": "^6.2.2",
     "less": "^3.0.4",
     "less-loader": "^5.0.0",
-    "lib-flexible": "^0.3.2",
     "postcss-px2rem": "^0.3.0",
     "vue-template-compiler": "^2.6.11"
   }
