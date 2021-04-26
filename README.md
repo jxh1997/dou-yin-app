@@ -1,5 +1,8 @@
 # dou-yin-app
 
+博客讲解：
+[Vue.js 项目实战之实现视频类WebApp的项目开发（仿抖音app）](https://blog.csdn.net/XH_jing/article/details/116129213) 
+
 ## Project setup
 ```
 yarn install

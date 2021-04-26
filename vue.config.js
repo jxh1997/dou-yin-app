@@ -9,7 +9,7 @@ function resolve(dir) {
 
 
 module.exports = {
-  outputDir: process.env.NODE_ENV === 'production' ?  'dist': '' ,
+  outputDir: process.env.NODE_ENV === 'production' ?  'dist': 'dy' ,
   productionSourceMap: false, // 生产环境是否 生成SourceMap
   devServer: {
     port,
@@ -21,14 +21,13 @@ module.exports = {
       errors: true
     },
     //代理
-    proxy: {
-      '/api': {
-        target: '',
-        ws: true,
-        changeOrigin: true
-      },
-
-    }
+    // proxy: {
+      // '/api': {
+      //   target: '',
+      //   ws: true,
+      //   changeOrigin: true
+      // },
+    // }
   },
   css: {
 
@@ -36,15 +35,7 @@ module.exports = {
   configureWebpack: {
     resolve: {
       alias: {
-        '@': resolve('src'),
-        'assets': resolve('src/assets'),
-        'common': resolve('src/common'),
-        'components': resolve('src/common/components'),
-        'styles': resolve('src/common/styles'),
-        'store': resolve('src/store'),
-        'views': resolve('src/views'),
-        'request': resolve('src/request'),
-        'utils': resolve('src/utils'),
+        '@': resolve('src')
       }
     }
   },
