@@ -7,13 +7,17 @@ Vue.use(VueRouter);
 const routes = [
   {
     path: '/',
+    redirect: 'index',
+  },
+  {
+    path: '/',
     name: 'Home',
     component: Home,
     children: [
       {
         path: '/index',
         name: 'index',
-        component: () => import(/* webpackChunkName: "index" */ '../views/index/index.vue')
+        component: () => import(/* webpackChunkName: "index" */ '../views/index/index.vue'),
       },
       {
         path: '/friends',
@@ -29,9 +33,14 @@ const routes = [
         path: '/mine',
         name: 'mine',
         component: () => import(/* webpackChunkName: "mine" */ '../views/mine/index.vue'),
-      }
-    ]
-  }
+      },
+    ],
+  },
+  {
+    path: '/release',
+    name: 'release',
+    component: () => import(/* webpackChunkName: "release" */ '../views/release/index.vue'),
+  },
 ];
 
 const router = new VueRouter({
