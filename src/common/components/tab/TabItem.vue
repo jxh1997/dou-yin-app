@@ -25,12 +25,12 @@ export default {
     },
     computed: {
         isActive() {
-            return this.$route.path === this.navPath;
+            return this.$route.path.split('/')[1] === this.navPath.split('/')[1];
         },
     },
     methods: {
         itemClick() {
-            console.log(this.$route.path);
+            console.log(this.$route.path.split('/')[1]);
         },
     },
 };

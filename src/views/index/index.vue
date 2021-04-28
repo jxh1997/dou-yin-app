@@ -1,15 +1,23 @@
 <template>
-  <div>
-      index
+  <div class="home-content">
+      <topBar></topBar>
+      <router-view ></router-view>
   </div>
 </template>
 
 <script>
-export default {
+import topBar from '@/common/components/top/TopBar.vue';
 
-}
+export default {
+  components: {
+    topBar,
+  },
+};
 </script>
 
-<style>
-
+<style lang="less" scoped>
+.home-content {
+  background: #000;
+  height: 100vh;
+}
 </style>

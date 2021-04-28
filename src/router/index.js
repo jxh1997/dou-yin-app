@@ -7,7 +7,11 @@ Vue.use(VueRouter);
 const routes = [
   {
     path: '/',
-    redirect: 'index',
+    redirect: '/index/recommend/',
+  },
+  {
+    path: '/index',
+    redirect: '/index/recommend/',
   },
   {
     path: '/',
@@ -18,6 +22,32 @@ const routes = [
         path: '/index',
         name: 'index',
         component: () => import(/* webpackChunkName: "index" */ '../views/index/index.vue'),
+        children: [
+          {
+            path: 'follows',
+            name: 'follows',
+            component: () => import(/* webpackChunkName: "follows" */ '../views/follow/index.vue'),
+            children: [
+              {
+                path: 'reVideoList',
+                name: 'reVideoList',
+                component: () => import(/* webpackChunkName: "VideoList" */ '../common/components/index/VideoList.vue'),
+              },
+            ],
+          },
+          {
+            path: 'recommend',
+            name: 'recommend',
+            component: () => import(/* webpackChunkName: "recommend" */ '../views/recommend/index.vue'),
+            children: [
+              {
+                path: 'reVideoList',
+                name: 'reVideoList',
+                component: () => import(/* webpackChunkName: "VideoList" */ '../common/components/index/VideoList.vue'),
+              },
+            ],
+          },
+        ],
       },
       {
         path: '/friends',
