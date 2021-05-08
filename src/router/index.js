@@ -7,11 +7,11 @@ Vue.use(VueRouter);
 const routes = [
   {
     path: '/',
-    redirect: '/index/recommend/',
+    redirect: '/index/recommend',
   },
   {
     path: '/index',
-    redirect: '/index/recommend/',
+    redirect: '/index/recommend',
   },
   {
     path: '/',
@@ -31,7 +31,7 @@ const routes = [
               {
                 path: 'reVideoList',
                 name: 'reVideoList',
-                component: () => import(/* webpackChunkName: "VideoList" */ '../common/components/index/VideoList.vue'),
+                component: () => import(/* webpackChunkName: "VideoList" */ '../common/components/videoList/VideoList.vue'),
               },
             ],
           },
@@ -43,7 +43,7 @@ const routes = [
               {
                 path: 'reVideoList',
                 name: 'reVideoList',
-                component: () => import(/* webpackChunkName: "VideoList" */ '../common/components/index/VideoList.vue'),
+                component: () => import(/* webpackChunkName: "VideoList" */ '../common/components/videoList/VideoList.vue'),
               },
             ],
           },
@@ -78,5 +78,11 @@ const router = new VueRouter({
   base: process.env.BASE_URL,
   routes,
 });
+
+// 解决重复点击导航时，控制台出现报错
+const VueRouterPush = VueRouter.prototype.push;
+VueRouter.prototype.push = function push(to) {
+  return VueRouterPush.call(this, to).catch(err => err);
+};
 
 export default router;

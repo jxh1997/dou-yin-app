@@ -34,6 +34,7 @@ export default {
   justify-content: space-around;
   color: #cccccc;
   font-size: 16px;
+  z-index: 99;
   .dy-btn {
     width: 50px;
     height: 30px;

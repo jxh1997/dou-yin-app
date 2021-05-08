@@ -15,7 +15,7 @@ export default {
         },
         navPath: {
             type: String,
-            default: '/index/recommend',
+            default: '/index/recommend/reVideoList',
         },
     },
     computed: {

@@ -17,7 +17,6 @@ export default {
 
 <style lang="less" scoped>
 .home-content {
-  background: #000;
   height: 100vh;
 }
 </style>
