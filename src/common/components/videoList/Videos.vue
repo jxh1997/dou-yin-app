@@ -18,6 +18,7 @@ export default {
     components: {
         videoPlayer,
     },
+    props: ['video'],
     data() {
       return {
         // videojs options
@@ -33,9 +34,9 @@ export default {
             fluid: true,
             sources: [{
                 type: 'video/mp4', // 类型
-                src: require('@/assets/videos/sucai.mp4'),
+                // src: require('@/assets/videos/sucai.mp4'),
+                src: this.video.url,
             }],
-            // poster: '/static/images/author.jpg',
             // 视频宽度,获取客户端宽度
             width: document.documentElement.clientWidth,
             // 允许覆盖Video.js无法播放媒体源时显示的默认信息。
@@ -46,6 +47,7 @@ export default {
     },
     mounted() {
         console.log('this is current player instance object', this.player);
+        console.log('video: ', this.video.url);
     },
 };
 </script>

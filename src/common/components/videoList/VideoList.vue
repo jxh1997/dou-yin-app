@@ -1,13 +1,9 @@
 <template>
   <div class="video-list">
     <swiper ref="mySwiper" :options="swiperOptions">
-      <swiper-slide>
-        <Videos></Videos>
+      <swiper-slide v-for="(item , index) in dataList" :key="index">
+        <Videos :video="item"></Videos>
       </swiper-slide>
-      <swiper-slide>Slide 3</swiper-slide>
-      <swiper-slide>Slide 3</swiper-slide>
-      <swiper-slide>Slide 4</swiper-slide>
-      <swiper-slide>Slide 5</swiper-slide>
       <div class="swiper-pagination" slot="pagination"></div>
     </swiper>
   </div>
@@ -60,6 +56,24 @@
           // 将observe应用于Swiper的祖先元素。当Swiper的祖先元素变化时，例如window.resize，Swiper更新。
           observeParents: true,
         },
+        dataList: [
+          {
+            id: '1',
+            url: 'http://video.jishiyoo.com/3720932b9b474f51a4cf79f245325118/913d4790b8f046bfa1c9a966cd75099f-8ef4af9b34003bd0bc0261cda372521f-ld.mp4',
+          },
+          {
+            id: '2',
+            url: 'http://video.jishiyoo.com/1eedc49bba7b4eaebe000e3721149807/d5ab221b92c74af8976bd3c1473bfbe2-4518fe288016ee98c8783733da0e2da4-ld.mp4',
+          },
+          {
+            id: '3',
+            url: 'http://video.jishiyoo.com/549ed372c9d14b029bfb0512ba879055/8e2dc540573d496cb0942273c4a4c78c-15844fe70971f715c01d57c0c6595f45-ld.mp4',
+          },
+          {
+            id: '4',
+            url: 'http://video.jishiyoo.com/161b9562c780479c95bbdec1a9fbebcc/8d63913b46634b069e13188b03073c09-d25c062412ee3c4a0758b1c48fc8c642-ld.mp4',
+          },
+        ],
         // 标识翻页
         page: 1,
       };
