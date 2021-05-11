@@ -3,6 +3,9 @@
     <swiper ref="mySwiper" :options="swiperOptions">
       <swiper-slide v-for="(item , index) in dataList" :key="index">
         <Videos :video="item"></Videos>
+        <div class="info-bar">
+          <InfoBar :infoName="item.author" :infoDesc="item.desc" :infoMusic="item.music"></InfoBar>
+        </div>
       </swiper-slide>
       <div class="swiper-pagination" slot="pagination"></div>
     </swiper>
@@ -13,6 +16,7 @@
   import { Swiper, SwiperSlide, directive } from 'vue-awesome-swiper';
   import 'swiper/swiper.min.css';
   import Videos from './Videos.vue';
+  import InfoBar from '../index/InfoBar.vue';
 
   export default {
     name: 'carrousel',
@@ -20,6 +24,7 @@
       Swiper,
       SwiperSlide,
       Videos,
+      InfoBar,
     },
     directives: {
       swiper: directive,
@@ -60,18 +65,30 @@
           {
             id: '1',
             url: 'http://video.jishiyoo.com/3720932b9b474f51a4cf79f245325118/913d4790b8f046bfa1c9a966cd75099f-8ef4af9b34003bd0bc0261cda372521f-ld.mp4',
+            author: '小兔子',
+            desc: '这里讲的是一只小兔子的故事',
+            music: '小兔子乖乖 - 乖乖',
           },
           {
             id: '2',
             url: 'http://video.jishiyoo.com/1eedc49bba7b4eaebe000e3721149807/d5ab221b92c74af8976bd3c1473bfbe2-4518fe288016ee98c8783733da0e2da4-ld.mp4',
+            author: '皮卡丘',
+            desc: '这里讲的是一只皮卡丘的故事',
+            music: '皮卡丘 - 球球',
           },
           {
             id: '3',
             url: 'http://video.jishiyoo.com/549ed372c9d14b029bfb0512ba879055/8e2dc540573d496cb0942273c4a4c78c-15844fe70971f715c01d57c0c6595f45-ld.mp4',
+            author: '表情包',
+            desc: '这里全是表情包，超可爱',
+            music: '表情包 - 三生',
           },
           {
             id: '4',
             url: 'http://video.jishiyoo.com/161b9562c780479c95bbdec1a9fbebcc/8d63913b46634b069e13188b03073c09-d25c062412ee3c4a0758b1c48fc8c642-ld.mp4',
+            author: '团子和丸子',
+            desc: '这里是团子和丸子的小生活',
+            music: '团子和丸子 - 自创',
           },
         ],
         // 标识翻页
@@ -101,6 +118,13 @@
       display: flex;
       justify-content: center;
       align-items: center;
+      flex-direction: column;
+      .info-bar {
+        width: 100%;
+        position: absolute;
+        bottom: 30px;
+        left: 0;
+      }
     }
   }
 }
