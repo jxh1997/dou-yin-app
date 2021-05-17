@@ -6,6 +6,9 @@
         <div class="info-bar">
           <InfoBar :infoName="item.author" :infoDesc="item.desc" :infoMusic="item.music"></InfoBar>
         </div>
+        <div class="right-bar">
+          <RightBar></RightBar>
+        </div>
       </swiper-slide>
       <div class="swiper-pagination" slot="pagination"></div>
     </swiper>
@@ -17,6 +20,7 @@
   import 'swiper/swiper.min.css';
   import Videos from './Videos.vue';
   import InfoBar from '../index/InfoBar.vue';
+  import RightBar from '../index/RightBar.vue';
 
   export default {
     name: 'carrousel',
@@ -25,6 +29,7 @@
       SwiperSlide,
       Videos,
       InfoBar,
+      RightBar,
     },
     directives: {
       swiper: directive,
@@ -124,6 +129,12 @@
         position: absolute;
         bottom: 30px;
         left: 0;
+      }
+      .right-bar {
+        width: 70px;
+        position: absolute;
+        right: 5px;
+        top: 40%;
       }
     }
   }

@@ -1,8 +1,8 @@
 @font-face {
   font-family: "iconfont"; /* Project id 2512534 */
-  src: url('//at.alicdn.com/t/font_2512534_e99uup6qxsr.woff2?t=1620701326919') format('woff2'),
-       url('//at.alicdn.com/t/font_2512534_e99uup6qxsr.woff?t=1620701326919') format('woff'),
-       url('//at.alicdn.com/t/font_2512534_e99uup6qxsr.ttf?t=1620701326919') format('truetype');
+  src: url('//at.alicdn.com/t/font_2512534_rkpzooqgiqm.woff2?t=1620718700313') format('woff2'),
+       url('//at.alicdn.com/t/font_2512534_rkpzooqgiqm.woff?t=1620718700313') format('woff'),
+       url('//at.alicdn.com/t/font_2512534_rkpzooqgiqm.ttf?t=1620718700313') format('truetype');
 }
 
 .iconfont {
@@ -13,16 +13,24 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
+.icon-pinglun1:before {
+  content: "\e63a";
+}
+
+.icon-fenxiang:before {
+  content: "\e633";
+}
+
+.icon-xin:before {
+  content: "\e66d";
+}
+
+.icon-jiahao:before {
+  content: "\e86a";
+}
+
 .icon-douyin:before {
   content: "\e8db";
-}
-
-.icon-pinglun:before {
-  content: "\e628";
-}
-
-.icon-dianzan:before {
-  content: "\e66e";
 }
 
 .icon-hanhan-01-01:before {

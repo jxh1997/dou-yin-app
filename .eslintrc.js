@@ -17,6 +17,7 @@ module.exports = {
     "linebreak-style": [0 ,"error", "windows"],
     'space-before-function-paren': 0,
     'arrow-parens': 'off',
-    "global-require": 0
+    "global-require": 0,
+    'max-len' : ["error", {code : 300}]
   },
 };
