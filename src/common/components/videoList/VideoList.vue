@@ -2,7 +2,7 @@
   <div class="video-list">
     <swiper ref="mySwiper" :options="swiperOptions">
       <swiper-slide v-for="(item , index) in dataList" :key="index">
-        <Videos :video="item"></Videos>
+        <Videos ref="videos" :video="item" :index="index"></Videos>
         <div class="info-bar">
           <InfoBar :infoName="item.author" :infoDesc="item.desc" :infoMusic="item.music"></InfoBar>
         </div>
@@ -65,6 +65,25 @@
           resistanceRatio: 0,
           // 将observe应用于Swiper的祖先元素。当Swiper的祖先元素变化时，例如window.resize，Swiper更新。
           observeParents: true,
+          // swiper组件提供的方法
+          on: {
+            tap: () => {
+              this.playAction(this.page - 1);
+              console.log('点击: ', this.page);
+            },
+            slidePrevTransitionStart: () => {
+              if (this.page > 1) {
+                this.page -= 1;
+              }
+              this.playAction(this.page - 1);
+              console.log('下拉：', this.page);
+            },
+            slideNextTransitionStart: () => {
+              this.page += 1;
+              this.playAction(this.page - 1);
+              console.log('上滑：', this.page);
+            },
+          },
         },
         dataList: [
           {
@@ -105,8 +124,12 @@
         return this.$refs.mySwiper.$swiper;
       },
     },
-    mounted() {
-      console.log('Current Swiper instance object', this.swiper);
+    methods: {
+      playAction(index) {
+        // index 当前屏幕上显示的视频是第几个视频
+        // 调用videos组件的playOrStop 方法
+        this.$refs.videos[index].playOrStop();
+      },
     },
   };
 </script>

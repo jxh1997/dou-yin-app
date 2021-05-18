@@ -18,7 +18,7 @@ export default {
     components: {
         videoPlayer,
     },
-    props: ['video'],
+    props: ['video', 'index'],
     data() {
       return {
         // videojs options
@@ -43,11 +43,35 @@ export default {
             notSupportedMessage: '此视频暂无法播放，请稍后再试',
             controlBar: false,
         },
+        // 用于判断当前视频是否处于播放状态
+        palying: true,
       };
     },
-    mounted() {
-        console.log('this is current player instance object', this.player);
-        console.log('video: ', this.video.url);
+    created() {
+        this.autoPlayAction();
+    },
+    methods: {
+      // 自动播放第一个视频
+      autoPlayAction() {
+        if (this.index === 0) {
+          this.playerOptions.autoplay = true;
+        }
+      },
+      // 视频播放或暂停
+      playOrStop() {
+        // 正在播放
+        if (this.palying) {
+          // 如果视频处于播放状态 则点击时 暂停此视频的播放
+          this.$refs.videoPlayer.player.pause();
+          // 设置播放标识为未播放
+          this.palying = false;
+        } else {
+          // 如果视频处于暂停状态 则点击时 继续视频的播放
+          this.$refs.videoPlayer.player.play();
+          // 设置播放标识为正在播放
+          this.palying = true;
+        }
+      },
     },
 };
 </script>
