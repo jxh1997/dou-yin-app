@@ -72,6 +72,16 @@ export default {
           this.palying = true;
         }
       },
+      // 播放
+      play() {
+        this.$refs.videoPlayer.player.play();
+        this.palying = true;
+      },
+      // 暂停
+      stop() {
+        this.$refs.videoPlayer.player.pause();
+        this.palying = false;
+      },
     },
 };
 </script>

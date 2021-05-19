@@ -71,17 +71,17 @@
               this.playAction(this.page - 1);
               console.log('点击: ', this.page);
             },
+            // 上滑 当屏幕向上滑动时
             slidePrevTransitionStart: () => {
               if (this.page > 1) {
                 this.page -= 1;
+                this.preVideo(this.page - 1);
               }
-              this.playAction(this.page - 1);
-              console.log('下拉：', this.page);
             },
+            // 下滑动 当屏幕向下滑动时
             slideNextTransitionStart: () => {
               this.page += 1;
-              this.playAction(this.page - 1);
-              console.log('上滑：', this.page);
+              this.nextVideo(this.page - 1);
             },
           },
         },
@@ -129,6 +129,16 @@
         // index 当前屏幕上显示的视频是第几个视频
         // 调用videos组件的playOrStop 方法
         this.$refs.videos[index].playOrStop();
+      },
+      // 用户下拉时暂停当前正在播放的视频并自动播放上一个视频
+      preVideo(index) {
+        this.$refs.videos[index].play();
+        this.$refs.videos[index + 1].stop();
+      },
+      // 用户上滑时暂停当前正在播放的视频并自动播放下一个视频
+      nextVideo(index) {
+        this.$refs.videos[index].play();
+        this.$refs.videos[index - 1].stop();
       },
     },
   };
