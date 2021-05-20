@@ -14,7 +14,7 @@
     </div>
     <div class="bar-item">
         <div class="item-icon">
-            <span class="iconfont icon-pinglun1"></span>
+            <span class="iconfont icon-pinglun1" @click.stop="showCom($event)"></span>
             <p>285</p>
         </div>
     </div>
@@ -42,8 +42,14 @@ export default {
   methods: {
     toggleLike(e) {
       // 阻止默认事件
-      e.preventDefault();
       this.isLike = !this.isLike;
+      e.stopPropagation();
+      console.log('点赞', e);
+    },
+    showCom(e) {
+      e.stopPropagation();
+      this.$emit('changeCom');
+      console.log('评论', e);
     },
   },
 };
