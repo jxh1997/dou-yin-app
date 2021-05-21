@@ -2,26 +2,26 @@
   <div class="right-bar">
     <div class="bar-item">
       <div class="author-item">
-        <img src="@/assets/images/author.png" alt="" class="author-img" />
+        <img :src="perPicture" alt="" class="author-img" />
         <img src="@/assets/images/icon/guanzhu.png" alt="" class="guanzhu" />
       </div>
     </div>
     <div class="bar-item">
         <div class="item-icon">
             <span class="iconfont icon-xin" :class="isLike ? 'active' : ''" @click.stop="toggleLike($event)"></span>
-            <p>95.9w</p>
+            <p>{{perLikes}}</p>
         </div>
     </div>
     <div class="bar-item">
         <div class="item-icon">
             <span class="iconfont icon-pinglun1" @click.stop="showCom($event)"></span>
-            <p>285</p>
+            <p>{{perComments}}</p>
         </div>
     </div>
     <div class="bar-item">
         <div class="item-icon">
             <span class="iconfont icon-fenxiang"></span>
-            <p>3072</p>
+            <p>{{perForward}}</p>
         </div>
     </div>
     <div class="bar-item">
@@ -34,6 +34,7 @@
 
 <script>
 export default {
+  props: ['perPicture', 'perLikes', 'perComments', 'perForward'],
   data() {
     return {
       isLike: false,

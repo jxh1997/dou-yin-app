@@ -1,7 +1,7 @@
 <template>
   <div class="info-bar">
-    <div class="infobar-item">@{{infoName}}</div>
-    <div class="infobar-item">{{infoDesc}}</div>
+    <div class="infobar-item">{{infoName}}</div>
+    <div class="infobar-item infoDesc">{{infoDesc}}</div>
     <div class="infobar-item music-item">
       <span class="iconfont icon-douyin"></span>
       <div class="music-name">
@@ -25,6 +25,7 @@ export default {
   .infobar-item {
     padding: 5px 0;
     display: flex;
+    width: 300px;
   }
   .music-item {
     width: 200px;
