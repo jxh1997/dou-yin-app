@@ -14,6 +14,11 @@ const routes = [
     redirect: '/index/recommend',
   },
   {
+    path: '/sign',
+    name: 'Sign',
+    component: () => import(/* webpackChunkName: "sign" */ '../views/Sign.vue'),
+  },
+  {
     path: '/',
     name: 'Home',
     component: Home,
