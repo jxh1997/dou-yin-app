@@ -36,11 +36,17 @@
         :class="btnBg ? 'active' : ''"
         @click="getCode"
       >
-        获取短信验证码
+        <div v-if="!loading">
+          获取短信验证码
+        </div>
+        <div v-else class="loading">
+          <van-loading color="#1989fa" size="16px"/>
+          发送中
+        </div>
       </button>
     </div>
     <div class="other">
-      <router-link href="" tag="a" to="/tpsign">密码登录</router-link>
+      <router-link href="" tag="a" to="pwSign">密码登录</router-link>
       <a @click="show">其他方式登录</a>
     </div>
     <transition name="up">
@@ -52,16 +58,16 @@
               <span>今日头条登录</span>
             </li>
             <li class="oauth-item">
-                <img src="@/assets/images/icon/QQ.png" alt="" />
-                <span>QQ登录</span>
+              <img src="@/assets/images/icon/QQ.png" alt="" />
+              <span>QQ登录</span>
             </li>
             <li class="oauth-item">
-                <img src="@/assets/images/icon/wx.png" alt="" />
-                <span>微信登录</span>
+              <img src="@/assets/images/icon/wx.png" alt="" />
+              <span>微信登录</span>
             </li>
             <li class="oauth-item">
-                <img src="@/assets/images/icon/wb.png" alt="" />
-                <span>微博登录</span>
+              <img src="@/assets/images/icon/wb.png" alt="" />
+              <span>微博登录</span>
             </li>
             <li class="quxiao" @click="close">取消</li>
           </ul>
@@ -72,6 +78,11 @@
 </template>
 
 <script>
+import Vue from 'vue';
+import { Loading } from 'vant';
+
+Vue.use(Loading);
+
 export default {
     data() {
         return {
@@ -85,6 +96,7 @@ export default {
             btnBg: false,
             // 获取短信验证码按钮是否可用
             disabled: true,
+            loading: false,
         };
     },
     methods: {
@@ -109,7 +121,11 @@ export default {
             }
         },
         getCode() {
-            console.log('获取验证码');
+          this.loading = true;
+          setTimeout(() => {
+            this.loading = false;
+            this.$router.push({ name: 'codeSign', query: { tel: this.tel } });
+          }, 1500);
         },
     },
 };
@@ -201,6 +217,11 @@ export default {
       font-weight: 600;
       background: #dbdbdb;
       border-radius: 2px;
+      .loading {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
     }
     .active {
       color: #ffffff;
@@ -255,11 +276,11 @@ export default {
           }
         }
         .quxiao {
-            border-top: 5px solid #ebebeb;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            min-height: 70px;
+          border-top: 5px solid #ebebeb;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          min-height: 70px;
         }
       }
     }

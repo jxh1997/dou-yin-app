@@ -18,6 +18,7 @@ module.exports = {
     'space-before-function-paren': 0,
     'arrow-parens': 'off',
     "global-require": 0,
-    'max-len' : ["error", {code : 300}]
+    'max-len' : ["error", {code : 300}],
+    "no-unused-vars": 'off'
   },
 };
