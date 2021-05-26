@@ -1,8 +1,8 @@
 @font-face {
   font-family: "iconfont"; /* Project id 2512534 */
-  src: url('//at.alicdn.com/t/font_2512534_a3jd9ghl15a.woff2?t=1621923149564') format('woff2'),
-       url('//at.alicdn.com/t/font_2512534_a3jd9ghl15a.woff?t=1621923149564') format('woff'),
-       url('//at.alicdn.com/t/font_2512534_a3jd9ghl15a.ttf?t=1621923149564') format('truetype');
+  src: url('//at.alicdn.com/t/font_2512534_mtmf6iyv23g.woff2?t=1622009665776') format('woff2'),
+       url('//at.alicdn.com/t/font_2512534_mtmf6iyv23g.woff?t=1622009665776') format('woff'),
+       url('//at.alicdn.com/t/font_2512534_mtmf6iyv23g.ttf?t=1622009665776') format('truetype');
 }
 
 .iconfont {
@@ -11,6 +11,34 @@
   font-style: normal;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+.icon-touxiang:before {
+  content: "\e614";
+}
+
+.icon-iconset0144:before {
+  content: "\e62b";
+}
+
+.icon-caidan:before {
+  content: "\e62c";
+}
+
+.icon-suo:before {
+  content: "\e644";
+}
+
+.icon-jiahao1:before {
+  content: "\e607";
+}
+
+.icon-erweima:before {
+  content: "\e61e";
+}
+
+.icon-bianzubeifen3:before {
+  content: "\e606";
 }
 
 .icon-fanhui:before {
