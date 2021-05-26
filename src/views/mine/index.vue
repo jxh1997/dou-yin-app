@@ -13,8 +13,7 @@
         <!-- 头像行 -->
         <div class="info">
           <img
-            src="@/assets/images/mine/tx.png"
-            alt=""
+            :src="userInfo.avathor"
             style="
               height: 100px;
               width: 100px;
@@ -31,58 +30,104 @@
         </div>
         <!-- 用户信息 -->
         <div class="desc">
-          <h2>前端小新</h2>
+          <h2>{{ userInfo.name }}</h2>
           <p class="dyh">
-            抖音号：98579335
+            抖音号：{{ userInfo.dyh }}
             <span class="iconfont icon-erweima"></span>
           </p>
-          <p class="jj">没有好看的皮囊，但有有趣的灵魂，技术没有止境</p>
+          <p class="jj">{{ userInfo.desc }}</p>
         </div>
         <!-- 用户标签 -->
         <div class="user-tag">
           <span>
             <span class="iconfont icon-touxiang"></span>
-            23岁
+            {{ userInfo.age }}岁
           </span>
-          <span>中国</span>
+          <span>{{ userInfo.region }}</span>
           <span><span class="iconfont icon-jiahao1"></span>添加学校等标签</span>
         </div>
         <div class="user-tag2">
-          <span><a>2</a>获赞</span>
-          <span><a>543</a>关注</span>
-          <span><a>1087</a>粉丝</span>
+          <span
+            ><a>{{ userInfo.like }}</a
+            >获赞</span
+          >
+          <span
+            ><a>{{ userInfo.follow }}</a
+            >关注</span
+          >
+          <span
+            ><a>{{ userInfo.fans }}</a
+            >粉丝</span
+          >
         </div>
       </div>
     </div>
     <!-- 内容切换 -->
     <div class="mine-tab">
       <div class="tab-navbar">
-        <div class="item" @click="changeTab(0)" :class="indexTab === 0 ? 'active' : '' ">作品</div>
-        <div class="item" @click="changeTab(1)" :class="indexTab === 1 ? 'active' : '' ">私密<span class="iconfont icon-suo"></span></div>
-        <div class="item" @click="changeTab(2)" :class="indexTab === 2 ? 'active' : '' ">喜欢<span class="iconfont icon-suo"></span></div>
+        <div
+          class="item"
+          @click="changeTab(0)"
+          :class="indexTab === 0 ? 'active' : ''"
+        >
+          作品
+        </div>
+        <div
+          class="item"
+          @click="changeTab(1)"
+          :class="indexTab === 1 ? 'active' : ''"
+        >
+          私密<span class="iconfont icon-suo"></span>
+        </div>
+        <div
+          class="item"
+          @click="changeTab(2)"
+          :class="indexTab === 2 ? 'active' : ''"
+        >
+          喜欢<span class="iconfont icon-suo"></span>
+        </div>
       </div>
       <div class="tab-wrap">
         <!-- 作品 -->
         <div class="tab-con" v-show="indexTab === 0">
-          <div class="tab-img" v-for="i in 10" :key="i">
-            <img src="@/assets/images/mine/bj.png" style="width:100%;height:auto" >
+          <div class="tab-con1" :v-if="userInfo.vlist.works.length === 0">
+            <h3>暂无作品</h3>
+          </div>
+          <div
+            class="tab-img"
+            :v-if="userInfo.vlist.works.length !== 0"
+            v-for="i in userInfo.vlist.works"
+            :key="i"
+          >
+            <img
+              src="@/assets/images/mine/bj.png"
+              style="width: 100%; height: auto"
+            />
           </div>
         </div>
         <!-- 私密 -->
         <div class="tab-con" v-show="indexTab === 1">
-          <div class="tab-con2">
+          <div class="tab-con2" :v-if="userInfo.vlist.private.length === 0">
             <h3>没有私密作品</h3>
             <p>设为私密的作品和过期的日记会出现在这里，并且只有你能看到</p>
           </div>
-          <!-- <div class="tab-img" v-for="i in 10" :key="i">
-            <img src="@/assets/images/mine/bj2.png" style="width:100%;height:auto" >
-          </div> -->
+          <div class="tab-img" v-for="i in userInfo.vlist.private" :key="i">
+            <img
+              src="@/assets/images/mine/bj2.png"
+              style="width: 100%; height: auto"
+            />
+          </div>
         </div>
         <!-- 喜欢 -->
         <div class="tab-con" v-show="indexTab === 2">
-          <div class="tab-con3">只有你能看到自己的喜欢列表</div>
-          <div class="tab-img" v-for="i in 10" :key="i">
-            <img src="@/assets/images/mine/bj3.png" style="width:100%;height:auto" >
+          <div class="tab-con1" :v-if="userInfo.vlist.likes.length === 0">
+            <h3>空空如也</h3>
+          </div>
+          <div>
+            <div class="tab-con3">只有你能看到自己的喜欢列表</div>
+            <div class="tab-img" :v-if="userInfo.vlist.likes.length !== 0" v-for="i in userInfo.vlist.likes" :key="i">
+              <img src="@/assets/images/mine/bj3.png" style="width: 100%; height: auto" />
+            </div>
           </div>
         </div>
       </div>
@@ -91,6 +136,8 @@
 </template>
 
 <script>
+import { mapActions, mapState } from 'vuex';
+
 export default {
   data() {
     return {
@@ -102,7 +149,18 @@ export default {
       indexTab: 0,
     };
   },
+  created() {
+    // 获取用户数据
+    this.GetUserInfo();
+  },
+  // 计算属性，监控userInfo
+  computed: {
+    ...mapState({
+      userInfo: (state) => state.user.userInfo,
+    }),
+  },
   methods: {
+    ...mapActions('user', ['GetUserInfo']),
     changeTab(index) {
       this.indexTab = index;
     },
@@ -258,6 +316,21 @@ export default {
           width: 33%;
           &:nth-child(3n) {
             border-right: 0;
+          }
+        }
+        .tab-con1 {
+          color: #a1a1a1;
+          width: 100%;
+          height: 200px;
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          align-items: center;
+          padding: 0 40px;
+          h3 {
+            color: #f3f3f3;
+            font-size: 18px;
+            font-weight: normal;
           }
         }
         .tab-con2 {
