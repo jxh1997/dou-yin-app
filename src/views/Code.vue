@@ -1,13 +1,17 @@
 <template>
   <div class="sign">
     <div class="sign-header">
-      <span class="iconfont icon-fanhui" style="font-size: 30px" @click="goBack"></span>
+      <span
+        class="iconfont icon-fanhui"
+        style="font-size: 30px"
+        @click="goBack"
+      ></span>
       <span style="color: #686868"> 帮助</span>
     </div>
     <div class="sign-content">
       <div class="des">
         <h2>请输入验证码</h2>
-        <p>验证码已通过短信发送至+86{{tel}}</p>
+        <p>验证码已通过短信发送至+86{{ tel }}</p>
       </div>
     </div>
     <div class="sign-box">
@@ -28,17 +32,13 @@
       <p>收不到短信？<a>获取语言验证码</a></p>
     </div>
     <div class="code-btn">
-      <button
-        :disabled="disabled"
-        :class="btnBg ? 'active' : ''"
-        @click="Login"
-      >
+      <button :class="btnBg ? 'active' : ''" @click="Login">
         <div v-if="!loading">
-          {{msg}}
+          {{ msg }}
         </div>
         <div v-else class="loading">
-          <van-loading color="#1989fa" size="16px"/>
-          {{msg}}
+          <van-loading color="#1989fa" size="16px" />
+          {{ msg }}
         </div>
       </button>
     </div>
@@ -59,7 +59,7 @@ export default {
             verifyCode: '',
             // 短信发送倒计时
             time: 60,
-            disabled: true,
+            disabled: false,
             btnBg: false,
             loading: false,
             msg: '登录',
@@ -77,14 +77,15 @@ export default {
             this.code = e.target.value;
             console.log(this.code, this.verifyCode);
             if (this.code === this.verifyCode) {
-                this.disabled = false;
+                this.disabled = true;
                 this.btnBg = true;
             } else {
-                console.log('验证码输入错误');
+                this.disabled = false;
             }
         },
         // 获取验证码
         getCode() {
+            this.$toast('验证码发送成功');
             this.verifyCode = this.$store.state.sign.verifyCode;
             this.countDown();
         },
@@ -99,6 +100,13 @@ export default {
         },
         // 登录按钮点击事件
         Login() {
+          if (!this.disabled) {
+            this.$toast({
+              message: '请输入正确的验证码',
+              type: 'error',
+              duration: 2000,
+            });
+          } else {
             this.loading = true;
             this.msg = '登录中';
             setTimeout(() => {
@@ -109,6 +117,7 @@ export default {
                 // 登录跳转操作
                 this.sign({ code: this.code });
             }, 2000);
+          }
         },
         // 返回
         goBack() {
