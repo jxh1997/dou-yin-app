@@ -22,7 +22,7 @@
             "
           />
           <div class="info-right">
-            <button class="btn">编辑资料</button>
+            <button class="btn" @click="gotoEdit">编辑资料</button>
             <button class="btn">
               <span class="iconfont icon-jiahao1"></span> 朋友
             </button>
@@ -40,25 +40,16 @@
         <!-- 用户标签 -->
         <div class="user-tag">
           <span>
-            <span class="iconfont icon-touxiang"></span>
+            <span class="iconfont icon-touxiang" :style="userInfo.sex === '男' ? 'color: rgb(5, 224, 224);' : 'color: rgb(224, 93, 5);'"></span>
             {{ userInfo.age }}岁
           </span>
           <span>{{ userInfo.region }}</span>
           <span><span class="iconfont icon-jiahao1"></span>添加学校等标签</span>
         </div>
         <div class="user-tag2">
-          <span
-            ><a>{{ userInfo.like }}</a
-            >获赞</span
-          >
-          <span
-            ><a>{{ userInfo.follow }}</a
-            >关注</span
-          >
-          <span
-            ><a>{{ userInfo.fans }}</a
-            >粉丝</span
-          >
+          <span><a>{{ userInfo.like }}</a>获赞</span>
+          <span><a>{{ userInfo.follow }}</a>关注</span>
+          <span><a>{{ userInfo.fans }}</a>粉丝</span>
         </div>
       </div>
     </div>
@@ -164,6 +155,9 @@ export default {
     changeTab(index) {
       this.indexTab = index;
     },
+    gotoEdit() {
+      this.$router.push({ name: 'edit' });
+    },
   },
 };
 </script>
@@ -249,7 +243,6 @@ export default {
           .icon-touxiang {
             width: 10px;
             height: 10px;
-            color: rgb(5, 224, 224);
             background-color: rgba(0, 0, 0, 0);
             margin: 0;
             padding: 0;
