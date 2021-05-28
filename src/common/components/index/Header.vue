@@ -15,8 +15,15 @@
     <div class="title">
       <span>{{ title }}</span>
     </div>
-    <div class="right" v-if="hasRight">
+    <!-- 保存按钮 -->
+    <div class="save" v-if="hasSave">
       <span :style="isChange ? 'opacity: 1;' : 'opacity: 0.8;'" @click="sava">
+        {{rightText}}
+      </span>
+    </div>
+    <!-- 创建群聊 -->
+    <div class="msg" v-if="hasMsg">
+      <span @click="chat">
         {{rightText}}
       </span>
     </div>
@@ -33,9 +40,13 @@ export default {
         },
         hasLeft: {
             type: Boolean,
-            default: true,
+            default: false,
         },
-        hasRight: {
+        hasSave: {
+            type: Boolean,
+            default: false,
+        },
+        hasMsg: {
             type: Boolean,
             default: false,
         },
@@ -60,6 +71,9 @@ export default {
       sava() {
         this.$emit('saveInfo');
       },
+      chat() {
+        console.log('创建群聊');
+      },
     },
 };
 </script>
@@ -76,6 +90,10 @@ export default {
   font-size: 16px;
   padding: 0 10px;
   box-sizing: border-box;
+  .title {
+    font-size: 16px;
+    font-weight: 600;
+  }
   .left {
     position: absolute;
     left: 10px;
@@ -83,12 +101,18 @@ export default {
       font-size: 24px;
     }
   }
-  .right {
+  .save {
     position: absolute;
     right: 20px;
     font-weight: 600;
     color: #fa5c00;
     font-size: 18px;
+  }
+  .msg {
+    position: absolute;
+    right: 20px;
+    color: #fff;
+    font-size: 16px;
   }
 }
 </style>

@@ -7,6 +7,7 @@
 <style lang="less">
 #app {
   height: 100vh;
+  background-color: #101821;
 }
 
 #nav {

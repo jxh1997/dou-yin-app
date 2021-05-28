@@ -3,7 +3,7 @@
     <Header
       :title="'修改' + title"
       hasLeft
-      hasRight
+      hasSave
       rightText = "保存"
       :isChange = "isChange"
       @saveInfo = "saveInfo"
