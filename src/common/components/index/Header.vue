@@ -16,7 +16,9 @@
       <span>{{ title }}</span>
     </div>
     <div class="right" v-if="hasRight">
-      <span>{{ rightText }}</span>
+      <span :style="isChange ? 'opacity: 1;' : 'opacity: 0.8;'" @click="sava">
+        {{rightText}}
+      </span>
     </div>
   </div>
 </template>
@@ -49,6 +51,15 @@ export default {
             type: Boolean,
             default: false,
         },
+        isChange: {
+            type: Boolean,
+            default: false,
+        },
+    },
+    methods: {
+      sava() {
+        this.$emit('saveInfo');
+      },
     },
 };
 </script>
@@ -66,11 +77,18 @@ export default {
   padding: 0 10px;
   box-sizing: border-box;
   .left {
-      position: absolute;
-      left: 10px;
+    position: absolute;
+    left: 10px;
     .iconfont {
       font-size: 24px;
     }
+  }
+  .right {
+    position: absolute;
+    right: 20px;
+    font-weight: 600;
+    color: #fa5c00;
+    font-size: 18px;
   }
 }
 </style>

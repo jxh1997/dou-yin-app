@@ -59,3 +59,15 @@ export function POST(url, param = '') {
             });
     });
 }
+
+export function PATCH(url, param = '') {
+    return new Promise((resolve, reject) => {
+        Axios.patch(url, JSON.stringify(param))
+            .then((res) => {
+                resolve(res);
+            })
+            .catch((err) => {
+                reject(err);
+            });
+    });
+}

@@ -78,18 +78,13 @@
           喜欢<span class="iconfont icon-suo"></span>
         </div>
       </div>
-      <div class="tab-wrap">
+      <div class="tab-wrap" v-if="userInfo.vlist">
         <!-- 作品 -->
         <div class="tab-con" v-show="indexTab === 0">
           <div class="tab-con1" :v-if="userInfo.vlist.works.length === 0">
             <h3>暂无作品</h3>
           </div>
-          <div
-            class="tab-img"
-            :v-if="userInfo.vlist.works.length !== 0"
-            v-for="i in userInfo.vlist.works"
-            :key="i"
-          >
+          <div class="tab-img" :v-if="userInfo.vlist.works.length !== 0" v-for="i in userInfo.vlist.works" :key="i">
             <img
               src="@/assets/images/mine/bj.png"
               style="width: 100%; height: auto"
@@ -138,6 +133,7 @@ export default {
         backgroundSize: '100% 100%',
       },
       indexTab: 0,
+      works: [],
     };
   },
   created() {

@@ -11,21 +11,21 @@
         </div>
       </div>
       <div class="edit-box">
-        <div class="edit-item">
-          <span class="label">名称</span>
+        <div class="edit-item" @click="$router.push({name: 'update', params: {title: '名字' , content: userInfo.name, desc: 20, type: 'name'}})">
+          <span class="label">名字</span>
           <span>
             {{ userInfo.name }}
             <span class="iconfont icon-right"></span>
           </span>
         </div>
-        <div class="edit-item">
+        <div class="edit-item" @click="$router.push({name: 'update', params: {title: '抖音号' , content: userInfo.dyh, desc: '最多16个字，只允许包含字母、数字、下划线和点，30天内仅能修改一次', type: 'dyh'}})">
           <span class="label">抖音号</span>
           <span>
             {{ userInfo.dyh }}
             <span class="iconfont icon-right"></span>
           </span>
         </div>
-        <div class="edit-item">
+        <div class="edit-item" @click="$router.push({name: 'update', params: {title: '简介' , content: userInfo.desc, desc: '填写个人简介更容易获得别人关注哦', type: 'desc'}})">
           <span class="label">简介</span>
           <span class="desc">
             点击设置

@@ -86,6 +86,11 @@ const routes = [
     name: 'edit',
     component: () => import(/* webpackChunkName: "edit" */ '../views/mine/editInfo.vue'),
   },
+  {
+    path: '/update',
+    name: 'update',
+    component: () => import(/* webpackChunkName: "edit" */ '../views/mine/updateInfo.vue'),
+  },
 ];
 
 const router = new VueRouter({
