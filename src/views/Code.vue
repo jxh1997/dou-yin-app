@@ -131,6 +131,7 @@ export default {
 .sign {
   padding: 30px;
   background: #fff;
+  height: 100vh;
   .sign-header {
     display: flex;
     justify-content: space-between;

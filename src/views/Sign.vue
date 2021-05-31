@@ -1,7 +1,7 @@
 <template>
   <div class="sign">
     <div class="sign-header">
-      <span class="iconfont icon-guanbi" style="font-size: 30px"></span>
+      <span class="iconfont icon-guanbi" style="font-size: 30px" @click="$router.back()"></span>
       <span style="color: #686868"> 帮助</span>
     </div>
     <div class="sign-content">
@@ -135,6 +135,7 @@ export default {
 .sign {
   padding: 30px;
   background: #fff;
+  height: 100vh;
   .sign-header {
     display: flex;
     justify-content: space-between;

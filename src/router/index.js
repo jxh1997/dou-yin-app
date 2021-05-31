@@ -68,11 +68,17 @@ const routes = [
         path: '/news',
         name: 'news',
         component: () => import(/* webpackChunkName: "news" */ '../views/news/index.vue'),
+        meta: {
+          requiresAuth: true, // 是否需要登录权限
+        },
       },
       {
         path: '/mine',
         name: 'mine',
         component: () => import(/* webpackChunkName: "mine" */ '../views/mine/index.vue'),
+        meta: {
+          requiresAuth: true, // 是否需要登录权限
+        },
       },
     ],
   },
@@ -104,5 +110,18 @@ const VueRouterPush = VueRouter.prototype.push;
 VueRouter.prototype.push = function push(to) {
   return VueRouterPush.call(this, to).catch(err => err);
 };
+
+// 设置登录权限，用户未登录时需要前往登录
+router.beforeEach((to, from, next) => {
+  const { meta: { requiresAuth } } = to;
+  // 获取当前用户是否登录
+  console.log(to, from);
+  const isLogin = sessionStorage.getItem('isLogin');
+  if (requiresAuth && !isLogin) {
+    next({ path: '/sign' });
+  } else {
+    next();
+  }
+});
 
 export default router;
