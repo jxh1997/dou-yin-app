@@ -9,8 +9,12 @@ function resolve(dir) {
 
 
 module.exports = {
+  // 设置打包文件输出路径
   outputDir: process.env.NODE_ENV === 'production' ?  'dist': 'dy' ,
-  productionSourceMap: false, // 生产环境是否 生成SourceMap
+  // 生产环境是否生成SourceMap
+  productionSourceMap: false, 
+  // 资源访问路径
+  publicPath: process.env.VUE_APP_NGINX_CONTENT,
   devServer: {
     port,
     // 启动之后 自动打开浏览器
@@ -22,11 +26,11 @@ module.exports = {
     },
     //代理
     // proxy: {
-      // '/api': {
-      //   target: '',
-      //   ws: true,
-      //   changeOrigin: true
-      // },
+    // '/api': {
+    //   target: '',
+    //   ws: true,
+    //   changeOrigin: true
+    // },
     // }
   },
   css: {

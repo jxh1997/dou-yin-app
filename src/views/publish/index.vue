@@ -116,7 +116,7 @@ export default {
           console.log(err);
         });
     },
-    recordOrStop() {
+    recodeOrStop() {
       if (this.isRecord) {
         this.stop();
       } else {
@@ -195,6 +195,11 @@ export default {
     photograph() {
       console.log('paizhao');
     },
+  },
+  // 页面销毁时，关闭摄像头
+  destroyed() {
+    // eslint-disable-next-line no-unused-expressions
+    this.mediaStreamTrack && this.mediaStreamTrack.stop();
   },
 };
 </script>
