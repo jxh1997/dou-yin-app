@@ -2,7 +2,7 @@
   <div class="tab-bar">
     <TabItem tab-title="首页" nav-path="/index"></TabItem>
     <TabItem tab-title="朋友" nav-path="/friends"></TabItem>
-    <TabItem nav-path="/release">
+    <TabItem nav-path="/publish">
       <img class="dy-btn" src="@/assets/images/dy-btn.png" alt="" />
     </TabItem>
     <TabItem tab-title="消息" nav-path="/news"></TabItem>

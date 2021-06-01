@@ -83,9 +83,9 @@ const routes = [
     ],
   },
   {
-    path: '/release',
-    name: 'release',
-    component: () => import(/* webpackChunkName: "release" */ '../views/release/index.vue'),
+    path: '/publish',
+    name: 'publish',
+    component: () => import(/* webpackChunkName: "publish" */ '../views/publish/index.vue'),
   },
   {
     path: '/edit',
