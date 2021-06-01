@@ -1,6 +1,6 @@
 <template>
   <div class="publish">
-    <a id="downLoadLink" style="display: none;"></a>
+    <a id="downLoadLink" style="display: none"></a>
     <video ref="video"></video>
     <div class="top-bar">
       <span class="iconfont icon-guanbi" @click="$router.back()"></span>
@@ -9,12 +9,73 @@
         选择音乐
       </div>
     </div>
-    <!-- <div class="right-bar">
-
+    <div class="right-bar">
+      <div class="tool-item">
+        <span class="iconfont icon-fanzhuan"></span>
+        <span>翻转</span>
+      </div>
+      <div class="tool-item">
+        <span class="iconfont icon-sudu"></span>
+        <span>快慢速</span>
+      </div>
+      <div class="tool-item">
+        <span class="iconfont icon-lvjing"></span>
+        <span>滤镜</span>
+      </div>
+      <div class="tool-item">
+        <span class="iconfont icon-meihua"></span>
+        <span>美化</span>
+      </div>
+      <div class="tool-item">
+        <span class="iconfont icon-xiaochengxu_tubiao"></span>
+        <span>倒计时</span>
+      </div>
+      <div class="tool-item">
+        <span class="iconfont icon-duoren"></span>
+        <span>广角</span>
+      </div>
+      <div class="tool-item">
+        <span class="iconfont icon-gengduo"></span>
+        <span>更多</span>
+      </div>
     </div>
     <div class="bottom-bar">
-
-    </div> -->
+      <div class="bar-top">
+        <span
+          :class="itemIndex === 1 ? 'bar-top-item active' : 'bar-top-item '"
+          @click="itemIndex = 1"
+          >照片</span
+        >
+        <span
+          :class="itemIndex === 2 ? 'bar-top-item active' : 'bar-top-item '"
+          @click="itemIndex = 2"
+          >视频</span
+        >
+        <span
+          :class="itemIndex === 3 ? 'bar-top-item active' : 'bar-top-item '"
+          @click="itemIndex = 3"
+          >文字</span
+        >
+      </div>
+      <div class="bar-bottom">
+        <div class="bar-bottom-item">
+          <img src="@/assets/images/mine/tx2.png" alt="" />
+          <span>道具</span>
+        </div>
+        <div class="paizhao" @click="photograph" v-if="itemIndex === 1">
+          <div class="paizhao2"></div>
+        </div>
+        <div class="paishe" @click="recodeOrStop" v-if="itemIndex === 2">
+          <div class="paishe2">
+            <span class="iconfont icon-shandian"></span>
+          </div>
+        </div>
+        <div class="bar-bottom-item">
+          <img src="@/assets/images/mine/bj3.png" alt="" />
+          <span>相册</span>
+        </div>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -26,6 +87,7 @@ export default {
       video_stream: '', // 视频stream
       recordedBlobs: [], // 视频音频 blobs
       isRecord: false, // 视频是否正在录制
+      itemIndex: 2,
     };
   },
   mounted() {
@@ -129,6 +191,10 @@ export default {
         track.stop();
       });
     },
+    // 拍照
+    photograph() {
+      console.log('paizhao');
+    },
   },
 };
 </script>
@@ -136,8 +202,9 @@ export default {
 <style lang="less" scoped>
 .publish {
   color: #fff;
-  height: 100vh;
-  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
   video {
     position: relative;
     width: 100%;
@@ -149,6 +216,7 @@ export default {
     top: 0;
     left: 0;
     padding: 40px 18px;
+    box-sizing: border-box;
     display: flex;
     width: 100%;
     .icon-guanbi {
@@ -157,7 +225,7 @@ export default {
     .yinyue {
       position: absolute;
       left: calc(50% - 65px);
-      background: rgba(255, 255, 255, 0.4);
+      background: rgba(0, 0, 0, 0.4);
       width: 130px;
       height: 35px;
       border-radius: 20px;
@@ -166,6 +234,129 @@ export default {
       font-size: 14px;
       .icon-yinfu {
         margin-right: 10px;
+      }
+    }
+  }
+  .right-bar {
+    position: absolute;
+    right: 0;
+    top: 0;
+    padding: 40px 18px;
+    box-sizing: border-box;
+    .tool-item {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      margin-bottom: 18px;
+      span {
+        font-size: 12px;
+      }
+      .iconfont {
+        font-size: 30px;
+        margin-bottom: 5px;
+      }
+      .icon-fanzhuan {
+        font-size: 26px;
+      }
+      .icon-sudu {
+        margin-bottom: -1px;
+      }
+      .icon-lvjing {
+        font-size: 35px;
+        margin-bottom: -1px;
+      }
+      .icon-meihua {
+        font-size: 35px;
+        margin-bottom: -1px;
+      }
+      .icon-xiaochengxu_tubiao {
+        font-size: 35px;
+        margin-bottom: -1px;
+      }
+      .icon-gengduo {
+        font-size: 35px;
+        margin-bottom: -1px;
+      }
+    }
+  }
+  .bottom-bar {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    padding: 25px 50px;
+    box-sizing: border-box;
+    .bar-top {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin-bottom: 10px;
+      .bar-top-item {
+        display: block;
+        width: 50px;
+        color: #fff;
+        font-size: 14px;
+        font-weight: 600;
+        text-align: center;
+        margin: 0 2px;
+      }
+      .active {
+        background: #fff;
+        color: #000;
+        height: 28px;
+        line-height: 28px;
+        border-radius: 20px;
+      }
+    }
+    .bar-bottom {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      .bar-bottom-item {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        img {
+          width: 35px;
+          height: 35px;
+          border-radius: 5px;
+          margin-bottom: 3px;
+        }
+      }
+      .paishe {
+        height: 80px;
+        width: 80px;
+        text-align: center;
+        line-height: 80px;
+        border-radius: 50%;
+        border: 5px solid #fff;
+        margin-top: 8px;
+        .paishe2 {
+          height: 76px;
+          width: 76px;
+          background-color: rgb(241, 25, 43);
+          border-radius: 50%;
+          margin: 2px;
+          .icon-shandian {
+            font-size: 40px;
+          }
+        }
+      }
+      .paizhao {
+        height: 80px;
+        width: 80px;
+        border-radius: 50%;
+        border: 5px solid #fff;
+        margin-top: 8px;
+        .paizhao2 {
+          height: 76px;
+          width: 76px;
+          background-color: rgb(255, 255, 255);
+          border-radius: 50%;
+          margin: 2px;
+        }
       }
     }
   }
